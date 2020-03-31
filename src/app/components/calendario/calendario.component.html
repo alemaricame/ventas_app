@@ -1,0 +1,24 @@
+<ion-content>
+<ion-row class="ion-text-center">
+ <ion-col>
+   <ion-button (click)="changeMode('day')" >Día</ion-button>
+ </ion-col>
+  <ion-col>
+   <ion-button (click)="changeMode('week')">Semana</ion-button>
+ </ion-col>
+  <ion-col>
+   <ion-button (click)="changeMode('month')">Mes</ion-button>
+ </ion-col>
+</ion-row> 
+        <calendar  [eventSource]="eventSource"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)"
+        (onRangeChanged)="reloadSource(startTime, endTime)"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)"
+        step="30">
+        </calendar> 
+
+</ion-content>

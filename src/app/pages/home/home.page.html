@@ -1,0 +1,17 @@
+<app-header></app-header>
+<ion-segment (ionChange)="opciones($event)">
+    <ion-segment-button checked value="calendario">
+      <ion-label>Calendario</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="productos">
+      <ion-label>Inventario</ion-label>
+    </ion-segment-button>
+</ion-segment>
+
+
+<ion-content>
+  <app-calendario *ngIf="opt=='calendario'"></app-calendario>
+
+  <app-productos *ngIf="opt=='productos'"></app-productos>
+
+</ion-content>

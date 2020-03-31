@@ -1,0 +1,31 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Lista de clientes</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">X</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+          <ion-col  *ngFor="let item of items">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>{{item.nombre_cte}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Dirección
+                <ion-item name="direccionCliente">{{item.direccion}}{{item.comunidad}} <ion-button (click)="direccion({record:item})" >IR</ion-button></ion-item>
+                Tel.
+                <ion-item >{{item.telefono}}</ion-item>
+                Comentario
+                <ion-item >{{item.comentario}}</ion-item>
+
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+</ion-content>
