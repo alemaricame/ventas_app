@@ -9,9 +9,12 @@
 
   
 <ion-content>
-    <ion-grid class="border"*ngFor="let venta of ventas.detalle">
-      <ion-row>
-        <ion-col>
+    <ion-grid class="border"  *ngFor="let venta of ventasDetalle">
+      <ion-row >
+        <ion-col (click)="getId(venta)">
+          <ion-item>
+            Fecha: {{venta.fecha_add}}
+          </ion-item>
           <ion-item>
             Id. Venta: {{venta.idVentaRepartidor}}
           </ion-item>
@@ -19,29 +22,19 @@
             Cliente: {{venta.id_client}}
           </ion-item>
           <ion-item>
-            Total venta: ${{venta.totalVenta}}
-          </ion-item>        
+            Total venta: ${{venta.total_pago}}
+          </ion-item>  
+          <ion-item>
+            Tipo de pago: {{venta.tipo_pago}}
+          </ion-item>   
+          <ion-item>
+            Estatus de venta: Pagado
+          </ion-item>
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Descripción</ion-col>
-        <ion-col>Cantidad Venta</ion-col>
-        <ion-col>Total Prod</ion-col>
-
-      </ion-row>
-        <ion-row *ngFor="let producto of venta.datos">
-         
-            <ion-col>
-              {{producto.descripcion}}
-            </ion-col>
-             <ion-col>
-                 {{producto.producto}}
-               </ion-col>
-               <ion-col>
-                   ${{producto.total}}
-                 </ion-col>          
-        </ion-row>
-        
-      </ion-grid>
+        <ion-item>
+          <ion-button size="small" *ngIf="venta.tipo_pago === 'Crédito'" (click)="abonar(venta)">Abonos</ion-button>
+        </ion-item> 
+      </ion-row>    
+    </ion-grid>
       
 </ion-content>

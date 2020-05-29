@@ -34,6 +34,17 @@ export class ProductosComponent implements OnInit {
 
    }
 
+   doRefresh(event) {
+    this.productos.getProductos();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.items = this.productos.productos;
+
+      event.target.complete();
+    }, 2000);
+  }
+
   /** itera los productos traídos del servidor */
   ngOnInit() {
 
@@ -57,7 +68,7 @@ export class ProductosComponent implements OnInit {
    */
   agregarProducto(producto){
     this.compra.push(producto);
-    console.log("compra",this.compra);
     this.venta.addCarrito(this.compra);
+    this.ventas();
   }
 }

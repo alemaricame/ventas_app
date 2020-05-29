@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiURL:'https://medicel.herokuapp.com/index.php/'
-  //http://localhost/rutas/index.php/
+  apiURL: 
+  //  'http://localhost/rutas/index.php/'
+  'https://medicel.herokuapp.com/index.php/'
   //http://localhost/medicel/medicel_repo/php_action/AppActions/login.php
 };
 

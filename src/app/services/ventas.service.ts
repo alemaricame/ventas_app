@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { DatosVenta, RespVenta } from '../interfaces/ventas';
 import { Producto } from '../interfaces/login';
 
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +27,8 @@ export class VentasService {
    */
   constructor(
     private http: HttpClient,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public iab : InAppBrowser
   ) { }
 
   async presentToast() {
@@ -56,7 +57,6 @@ export class VentasService {
    */
   addCarrito(producto:Producto){
     this.subject.next([...this.itemsCarrito, producto]); 
-    console.log("sub",this.subject);
     this.presentToast();
   }
   
@@ -75,11 +75,28 @@ export class VentasService {
   insertVenta(data){
     //http://localhost/medicel/medicel_repo/php_action/createVentaRepartidor.php
     //let url = `login.php?usuario=${data['usuarioRepartidor']}&password=${data['passRepartidor']}`;
-    return this.http.post('https://medicel.herokuapp.com/index.php/login/agregarventa',data)
+    return this.http.post(environment.apiURL+'/consultas/agregarventa',data)
     .subscribe(resp=>{
-      console.log(resp)
-
+      if(resp){
+        alert("Venta generada")
+        let url = `https://medicel.000webhostapp.com/medicel_repo/pdf/printOrderVta.php?id/${resp}`;
+        this.iab.create(url);
+      }else{
+        alert("Error al agregar");
+      }
     });
+  }
+
+  editClient(data){
+    return this.http.post(environment.apiURL+'/consultas/editClient',data)
+    .subscribe(resp=>{
+      if(resp){
+        alert("Se edito correctamente")
+      }else{
+        alert("Error al editar");
+      }
+    });
+
   }
 }
 

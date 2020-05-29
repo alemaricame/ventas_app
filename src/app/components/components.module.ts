@@ -10,6 +10,10 @@ import { TarjetaUsuarioComponent } from './tarjeta-usuario/tarjeta-usuario.compo
 import { MenuPerfilComponent } from './menu-perfil/menu-perfil.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { HistorialventasComponent } from './historialventas/historialventas.component';
+import { DetalleventasComponent } from './detalleventa/detalleventas.component';
+import { AbonosComponent } from './abonos/abonos.component';
+import { EditClienteComponent } from './edit-cliente/edit-cliente.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -23,6 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MenuPerfilComponent,
     ClientesComponent,
     HistorialventasComponent,
+    DetalleventasComponent,
+    AbonosComponent,
+    EditClienteComponent
   ],
   exports:[
     CalendarioComponent,
@@ -33,8 +40,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MenuPerfilComponent,
     ClientesComponent,
     HistorialventasComponent,
-    
-
+    DetalleventasComponent,
+    AbonosComponent,
+    EditClienteComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +56,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ClientesComponent,
     VentasComponent,
     HistorialventasComponent,
+    DetalleventasComponent,
+    AbonosComponent,
+    EditClienteComponent
   ]
 })
 export class ComponentsModule { }

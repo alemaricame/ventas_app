@@ -11,7 +11,9 @@
     <ion-item>
         <ion-label>Selecciona el cliente</ion-label>
         <ion-select [(ngModel)]="cliente" [compareWith]="compareWith">
-            <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id_client" [selected]="cliente.id_client">{{cliente.nombre_cte}}</ion-select-option>
+            <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id_client" [selected]="cliente.id_client">
+                {{cliente.nombre_cte}}
+            </ion-select-option>
           </ion-select>
     </ion-item>
   <ion-row>
@@ -59,7 +61,7 @@
         <ion-label>Selecciona el tipo de pago</ion-label>
         <ion-select [(ngModel)]="pago" [compareWith]="compareWith">
             <ion-select-option [value]="efectivo">Efectivo</ion-select-option>
-            <ion-select-option [value]="efectivo">Crédito</ion-select-option>
+            <ion-select-option [value]="credito">Crédito</ion-select-option>
           </ion-select>
     </ion-item>
 

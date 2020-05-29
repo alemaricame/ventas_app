@@ -29,6 +29,9 @@ export class LoginService {
   dataUser;
   clientes;
   ventas;
+  idVentaRepartidor;
+  ventasProductos;
+  abonod;
   /**
    * 
    * @param http => plugin de peticiones
@@ -107,6 +110,16 @@ export class LoginService {
     }); 
   }
 
+  getVentasProducts(){
+    console.log("service")
+    //localhost/rutas/index.php/consultas/verventas
+    let url= environment.apiURL+'consultas/productosventas';
+    return this.http.post(url,{idVentaRepartidor:this.idVentaRepartidor})
+        .subscribe( resp =>{
+          console.log("productos venta",resp);
+          this.ventasProductos = resp;
+    }); 
+  }
   /* USUARIO ACTIVO */
   /**
    * 

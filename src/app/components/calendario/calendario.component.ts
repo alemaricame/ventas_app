@@ -81,18 +81,17 @@ export class CalendarioComponent implements OnInit {
  * Agregar evento con los parametros de citas del servicio de login
  */
 addEvent(){
-    for(var i=0;i<this.citasService.loguear.citas.length;i++){
       this.addevent = {
-        title:this.citasService.loguear.citas[i].nombreCliente,
-        desc:this.citasService.loguear.citas[i].descCita,
-        startTime:new Date(this.citasService.loguear.citas[i].fechaCita),
-        endTime: new Date(this.citasService.loguear.citas[i].fechaCita),
+        title:"Cita",
+        desc:"Cliente",
+        startTime:new Date(),
+        endTime: new Date(),
         allDay:false
       }
           
       this.eventSource.push(this.addevent);
       this.myCal.loadEvents();
-    }    
+       
 
     this.resetEvent();
   }

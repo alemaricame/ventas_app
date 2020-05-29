@@ -8,6 +8,7 @@ import { Cliente } from 'src/app/interfaces/login';
 
 /** Componente */
 import { LoginService } from 'src/app/services/login.service';
+import { EditClienteComponent } from '../edit-cliente/edit-cliente.component';
 
 @Component({
   selector: 'app-clientes',
@@ -81,6 +82,24 @@ export class ClientesComponent implements OnInit {
      });
   }
 
+  async editCliente(item){
+    const modal = await this.modalCtrl.create( {
+      component: EditClienteComponent,
+      componentProps: item});
+
+    return await modal.present();
+  }
+  
+  doRefresh(event) {
+    this.perfil.getClientes();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.items = this.perfil.clientes;
+
+      event.target.complete();
+    }, 2000);
+  }
 
 
 }

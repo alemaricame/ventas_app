@@ -1,0 +1,40 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Historial de ventas</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">X</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  
+<ion-content>
+    <ion-grid>
+      <ion-row class="ion-text-center">
+         <ion-col>
+           Producto
+         </ion-col>
+         <ion-col>
+           Cant
+         </ion-col>
+         <ion-col>
+           Precio
+         </ion-col>
+         <ion-col>
+           
+          </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let venta of ventasDetalle" class="ion-text-center">
+          <ion-col >
+            {{venta.descripcion}}
+          </ion-col>
+          <ion-col>
+            {{venta.producto}}
+          </ion-col>
+          <ion-col>
+            ${{venta.total}}
+          </ion-col>
+       </ion-row>
+    </ion-grid>
+      
+</ion-content>

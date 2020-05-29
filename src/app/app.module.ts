@@ -15,8 +15,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {IonicStorageModule} from '@ionic/storage';
-
-
+import { InAppBrowser} from '@ionic-native/in-app-browser/ngx'; //add
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -31,6 +30,7 @@ import {IonicStorageModule} from '@ionic/storage';
     StatusBar,
     SplashScreen,
     SMS,
+    InAppBrowser,
     AndroidPermissions,
     LaunchNavigator,
     Geolocation,

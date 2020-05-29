@@ -8,7 +8,6 @@ import { Producto, Cliente } from 'src/app/interfaces/login';
 /** Componentes */
 import { LoginService } from 'src/app/services/login.service';
 import { VentasService } from 'src/app/services/ventas.service';
-
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -21,8 +20,8 @@ export class VentasComponent implements OnInit {
 
   /** Identifica que los clientes son tipo de la interfaz login => Cliente  */
   clientes:[]=[];
-  cliente;
-  pago=0;
+  cliente = "";
+  pago="";
   montoPagado=0;
   /** Productos de carrito*/
   private carrito: any = [];
@@ -82,20 +81,50 @@ export class VentasComponent implements OnInit {
    * Prepara los datos para enviarlos a su registro de venta
    */
   generarVenta(){
-    console.log(this.cliente.id_client);
-    console.log(this.cliente);
-    let datosVenta={
-      idUser: this.data.dataUser.idUser,
-      id_client:this.cliente,
-      total_pago:this.totalVenta.toString(),
-      tipo_pago: this.pago,
-      monto_pagado: this.montoPagado,
-      saldo: Number(this.totalVenta - this.montoPagado),
-      productos: this.carrito
-    }
+    const date = new Date()
+    const formatedDate = date.toISOString().substring(0, 10);
 
-    console.log(datosVenta);
-    this.carritoService.insertVenta(datosVenta);
+    if(this.cliente !== ""){
+      for (let client of this.data.clientes) {
+        if(client.id_client === this.cliente){
+          //if(this.pago == "Efectivo"){
+            let datosVenta={
+              idUser: this.data.dataUser.idUser,
+              fecha_add: formatedDate,
+              id_client:this.cliente,
+              total_pago:this.totalVenta.toString(),
+              tipo_pago: this.pago,
+              monto_pagado: this.montoPagado,
+              saldo: Number(this.totalVenta - this.montoPagado),
+              productos: this.carrito
+            }
+        
+            this.carritoService.insertVenta(datosVenta);
+          // }else{
+          //   if(client.telefono !== "-" ){
+          //     let datosVenta={
+          //       idUser: this.data.dataUser.idUser,
+          //       fecha_add: formatedDate,
+          //       id_client:this.cliente,
+          //       total_pago:this.totalVenta.toString(),
+          //       tipo_pago: this.pago,
+          //       monto_pagado: this.montoPagado,
+          //       saldo: Number(this.totalVenta - this.montoPagado),
+          //       productos: this.carrito
+          //     }
+          
+          //     this.carritoService.insertVenta(datosVenta);
+          //    }else{
+          //     alert("Tu venta no puede ser generada si el cliente no tiene sus datos completos");
+          //  }
+          // }
+          
+        }
+      }
+    }else{
+      alert("Selecciona un cliente")
+    }
+    
   }
 
 }
