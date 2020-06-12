@@ -9,6 +9,7 @@ import { VentasComponent } from '../ventas/ventas.component';
 import { LoginService } from 'src/app/services/login.service';
 import { VentasService } from 'src/app/services/ventas.service';
 
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-productos',
@@ -30,15 +31,17 @@ export class ProductosComponent implements OnInit {
     public modalCtrl: ModalController,
     private productos: LoginService,
     private venta: VentasService,
+    private storage: Storage
     ) {
-
+      storage.get('Productos').then((val) => {
+        this.items = val;
+      })
    }
 
    doRefresh(event) {
     this.productos.getProductos();
 
     setTimeout(() => {
-      console.log('Async operation has ended');
       this.items = this.productos.productos;
 
       event.target.complete();
@@ -48,8 +51,6 @@ export class ProductosComponent implements OnInit {
   /** itera los productos traídos del servidor */
   ngOnInit() {
 
-    this.items = this.productos.productos;
-    console.log(this.items);
   }
 
   /** Abre el modal del carrito */
@@ -67,8 +68,22 @@ export class ProductosComponent implements OnInit {
    * Envía el parámetro al modal del carrito
    */
   agregarProducto(producto){
-    this.compra.push(producto);
-    this.venta.addCarrito(this.compra);
+    this.venta.addCarrito(producto);
+
+    // let added = false;
+    // for(let item of this.compra){
+    //   if(item.id_inv === producto.id_inv){
+    //     added = true;
+    //     break;
+    //   }
+    // }
+
+    // if(!added){
+    //   this.compra.push(producto);
+    //   this.venta.addCarrito(this.compra);
     this.ventas();
+
+    // }
+    //this.venta.addCarrito(this.compra);
   }
 }

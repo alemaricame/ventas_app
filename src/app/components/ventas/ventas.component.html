@@ -16,65 +16,47 @@
             </ion-select-option>
           </ion-select>
     </ion-item>
-  <ion-row>
-    <ion-col>
-      Producto
-    </ion-col>
-    <ion-col>
-      Cant T
-    </ion-col>
-    <ion-col>
-      Cant
-    </ion-col>
-    <ion-col>
-      Precio U
-    </ion-col>
-    <ion-col>
-      Precio T
-    </ion-col>
-  </ion-row>
-  <ion-row *ngFor="let item of carrito">
-    <ion-col>
-      {{item.descripcion}}
-    </ion-col>
-    <ion-col>
-      {{item.cantidad}}
-    </ion-col>
-    <ion-col>
-      <ion-input type="number" (change)='onChangeTime(item)' [(ngModel)]="item.cantV"></ion-input>
-    </ion-col>
-    <ion-col>
-        {{item.precio_venta_vendedor}}
-    </ion-col>
-    <ion-col>
-      {{item.total}}
-  </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      Total ${{totalVenta}}
-    </ion-col>
-  </ion-row>
 
-  <ion-row>
-    <ion-item>
-        <ion-label>Selecciona el tipo de pago</ion-label>
-        <ion-select [(ngModel)]="pago" [compareWith]="compareWith">
-            <ion-select-option [value]="efectivo">Efectivo</ion-select-option>
-            <ion-select-option [value]="credito">Crédito</ion-select-option>
-          </ion-select>
-    </ion-item>
+    <ion-card>
+      <ion-card-content class="left" *ngFor="let item of carrito">
+        <ion-label> Producto: {{item.descripcion}} </ion-label>
+        <br>
+        <ion-label>Precio U: {{item.precio_venta_vendedor}}</ion-label>
+        <br>
+        <ion-label>Cantidad: </ion-label>
+        <ion-input type="number" size="small" (change)='onChangeTime(item)' [(ngModel)]="item.cantV"></ion-input>
+        <br>
+        <ion-label>Precio Total: {{item.total}}</ion-label>
+        <br>
+        <ion-button color="danger" size="small" (click)="eliminarProducto(item)">Eliminar producto</ion-button>      
+      </ion-card-content>
+    </ion-card>
+  
 
-    <ion-item>
-      <ion-label>Cantidad Pagada $</ion-label>
-      <ion-input type="text" [(ngModel)]="montoPagado"></ion-input>
-    </ion-item>
-</ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label color="red">Total Venta: </ion-label>
+          <ion-input type="number" size="small" (change)='totalVentas()' [(ngModel)]="totalVenta"></ion-input>
 
-  <ion-row>
-    <ion-col class="border">
-      <ion-button type="submit" (click)="generarVenta()">Generar venta</ion-button>
-  </ion-col>
-  </ion-row>
+        </ion-item>
+        <ion-item>
+            <ion-label>Selecciona el tipo de pago</ion-label>
+            <ion-select [(ngModel)]="pago" [compareWith]="compareWith">
+                <ion-select-option [value]="efectivo">Efectivo</ion-select-option>
+                <ion-select-option [value]="credito">Credito</ion-select-option>
+              </ion-select>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Cantidad Pagada $</ion-label>
+          <ion-input type="number" [(ngModel)]="montoPagado"></ion-input>
+        </ion-item>
+    </ion-row>
+    
+      <ion-row>
+        <ion-col class="border">
+          <ion-button type="submit" (click)="createPDF()">Generar venta</ion-button>
+      </ion-col>
+      </ion-row>
 
 </ion-content>

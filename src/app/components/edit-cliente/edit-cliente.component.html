@@ -10,15 +10,15 @@
 <ion-content>
   <ion-card>
     <ion-label>Cliente</ion-label>
-    <ion-input type="text" [(ngModel)]="dataClient.data.nombre_cte"></ion-input>
+    <ion-input type="text" placeholder="Nombre Cliente" [(ngModel)]="dataClient.data.nombre_cte"></ion-input>
     <ion-label>Direccion</ion-label>
-    <ion-input type="text" [(ngModel)]="dataClient.data.direccion"></ion-input>
+    <ion-input type="text" placeholder="Dirección" [(ngModel)]="dataClient.data.direccion"></ion-input>
     <ion-label>Comunidad</ion-label>
-    <ion-input type="text" [(ngModel)]="dataClient.data.comunidad"></ion-input>
+    <ion-input type="text" placeholder="Comunidad" [(ngModel)]="dataClient.data.comunidad"></ion-input>
     <ion-label>Telefono</ion-label>
-    <ion-input type="text" [(ngModel)]="dataClient.data.telefono"></ion-input>
+    <ion-input type="text" placeholder="Telefono" [(ngModel)]="dataClient.data.telefono"></ion-input>
     <ion-label>Ruta</ion-label>
-    <ion-input type="text" [(ngModel)]="dataClient.data.comentario"></ion-input>
+    <ion-input type="text" placeholder="Ruta + día" [(ngModel)]="dataClient.data.comentario">Ruta </ion-input>
   </ion-card>
 
   <ion-button (click)="editCliente()">Editar Cliente</ion-button>

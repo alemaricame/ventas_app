@@ -45,7 +45,7 @@ export class HistorialventasComponent implements OnInit {
   /** Iguala las ventas a las ventas obtenidas del servicio */
   ngOnInit() {
   
-    this.ventasDetalle = this.venta.ventas.detalle;
+    this.ventasDetalle = this.venta.ventas;
     console.log("ventasDetalle",this.ventasDetalle);
     // this.listProductos = this.ventas.datos;
     // console.log(this.listProductos);

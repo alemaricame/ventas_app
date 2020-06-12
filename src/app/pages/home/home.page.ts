@@ -3,7 +3,7 @@ import { MenuController, NavController } from '@ionic/angular';
 
 /** Componentes */
 import { LoginService } from 'src/app/services/login.service';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,8 +16,20 @@ export class HomePage {
   constructor(
     public menu: MenuController,
     private login: LoginService,
-    public navCtrl: NavController
-  ) {
+    public navCtrl: NavController,
+    private storage: Storage
+  ) {   
+    storage.get('Data').then((val) => {
+      console.log(val.idUser)
+      if(val.idUser !== ""){
+        this.login.getClientes();
+        this.login.getProductos();
+        this.login.getVentasHistory();
+      }else{
+        this.navCtrl.navigateRoot('/login');
+
+      }
+    });
   }
 
   /**
@@ -26,13 +38,7 @@ export class HomePage {
   ngOnInit(){
     //this.opt="calendario";
 
-    if(this.login.loguear === false){
-      this.navCtrl.navigateRoot('/login');
-    }else{
-      this.login.getClientes();
-      this.login.getProductos();
-      this.login.getVentasHistory();
-    }
+    
   }
 
 

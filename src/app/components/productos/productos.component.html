@@ -7,43 +7,29 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
     </ion-refresher>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="ventas()">
+        <ion-icon name="cart" class="cart-ion"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 <ion-grid>
 
-  <ion-row class="ion-text-center">
-    <ion-col class="border">
-       <ion-button (click)="ventas()">Ir al carrito</ion-button>
-    </ion-col>
-</ion-row>
-
-  <ion-row class="ion-text-center">
-     <ion-col>
-       Producto
-     </ion-col>
-     <ion-col>
-       Cant
-     </ion-col>
-     <ion-col>
-       Precio
-     </ion-col>
-     <ion-col>
-       
-      </ion-col>
-  </ion-row>
-  <ion-row *ngFor="let item of items" class="ion-text-center">
-      <ion-col >
-        {{item.descripcion}}
-      </ion-col>
-      <ion-col>
-        {{item.cantidad}}
-      </ion-col>
-      <ion-col>
-        ${{item.precio_venta_vendedor}}
-      </ion-col>
-      <ion-col>
-          <ion-button size="small" (click)="agregarProducto(item)">Vender</ion-button>
-        </ion-col>
-   </ion-row>
-
-  
+  <ion-list>
+    <ion-card  *ngFor="let item of items">
+      <ion-card-title>
+        <ion-label>{{item.descripcion}}</ion-label>
+      </ion-card-title>
+      <ion-card-content>
+        <ion-label>Cantidad Inventario: </ion-label>
+        <ion-label>{{item.cantidad}}</ion-label>
+        <br>
+        <ion-label>Precio: </ion-label>
+        <ion-label>${{item.precio_venta_vendedor}}</ion-label>
+        <br>
+        <ion-button size="small" (click)="agregarProducto(item)">Vender</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-grid>
 </ion-content>

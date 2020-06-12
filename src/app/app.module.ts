@@ -16,6 +16,12 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {IonicStorageModule} from '@ionic/storage';
 import { InAppBrowser} from '@ionic-native/in-app-browser/ngx'; //add
+import { Network } from '@ionic-native/network/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,7 +40,10 @@ import { InAppBrowser} from '@ionic-native/in-app-browser/ngx'; //add
     AndroidPermissions,
     LaunchNavigator,
     Geolocation,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    Network,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    File,
+    FileOpener
   ],
   bootstrap: [AppComponent]
 })

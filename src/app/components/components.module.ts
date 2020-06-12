@@ -15,7 +15,7 @@ import { AbonosComponent } from './abonos/abonos.component';
 import { EditClienteComponent } from './edit-cliente/edit-cliente.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AddClienteComponent } from './add-cliente/add-cliente.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HistorialventasComponent,
     DetalleventasComponent,
     AbonosComponent,
-    EditClienteComponent
+    EditClienteComponent,
+    AddClienteComponent
   ],
   exports:[
     CalendarioComponent,
@@ -42,15 +43,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HistorialventasComponent,
     DetalleventasComponent,
     AbonosComponent,
-    EditClienteComponent
+    EditClienteComponent,
+    AddClienteComponent
+
   ],
   imports: [
     CommonModule,
-    IonicModule,
+    [IonicModule],
     NgCalendarModule,
     ReactiveFormsModule,
     FormsModule,
-
   ],
   entryComponents:[
     ClientesComponent,
@@ -58,7 +60,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HistorialventasComponent,
     DetalleventasComponent,
     AbonosComponent,
-    EditClienteComponent
+    EditClienteComponent,
+    AddClienteComponent
+
   ]
 })
 export class ComponentsModule { }

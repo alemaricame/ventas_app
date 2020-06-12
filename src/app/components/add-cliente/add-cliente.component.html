@@ -1,0 +1,26 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Agregar clientes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">X</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-label>Cliente</ion-label>
+    <ion-input type="text" placeholder="Nombre cliente" [(ngModel)]="dataClient.nombre_cte"></ion-input>
+    <ion-label>Direccion</ion-label>
+    <ion-input type="text" placeholder="Dirección" [(ngModel)]="dataClient.direccion"></ion-input>
+    <ion-label>Comunidad</ion-label>
+    <ion-input type="text" placeholder="Comunidad" [(ngModel)]="dataClient.comunidad"></ion-input>
+    <ion-label>Telefono</ion-label>
+    <ion-input type="text" placeholder="Telefono" [(ngModel)]="dataClient.telefono"></ion-input>
+    <ion-label>Ruta</ion-label>
+    <ion-input type="text" placeholder="Ruta + día" [(ngModel)]="dataClient.comentario"> </ion-input>
+  </ion-card>
+
+  <ion-button (click)="saveCliente()">Guardar Cliente</ion-button>
+
+</ion-content>

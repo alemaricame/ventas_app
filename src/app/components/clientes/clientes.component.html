@@ -15,7 +15,7 @@
     refreshingText="Refreshing...">
   </ion-refresher-content>
   </ion-refresher>
-
+  <ion-button class="ion-text-center" color="success" (click)="addCliente()">Agregar Cliente</ion-button>
     <ion-grid>
         <ion-row>
           <ion-col>
@@ -30,7 +30,9 @@
                 <ion-item >{{item.telefono}}</ion-item>
                 Comentario
                 <ion-item >{{item.comentario}}</ion-item>
-                <ion-button (click)="editCliente(item)">Editar Cliente</ion-button>
+                <ion-button color="warning" (click)="editCliente(item)">Editar Cliente</ion-button>
+                <ion-button color="danger" (click)="deleteCliente(item)">Borrar</ion-button>
+
               </ion-card-content>
             </ion-card>
           </ion-col>

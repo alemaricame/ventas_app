@@ -9,6 +9,8 @@ import { Cliente } from 'src/app/interfaces/login';
 /** Componente */
 import { LoginService } from 'src/app/services/login.service';
 import { EditClienteComponent } from '../edit-cliente/edit-cliente.component';
+import { AddClienteComponent } from '../add-cliente/add-cliente.component';
+import { VentasService } from 'src/app/services/ventas.service';
 
 @Component({
   selector: 'app-clientes',
@@ -39,7 +41,8 @@ export class ClientesComponent implements OnInit {
     private perfil : LoginService,
     public modalCtrl : ModalController,
     private geolocation: Geolocation,
-    private launchNavigator: LaunchNavigator
+    private launchNavigator: LaunchNavigator,
+    private services : VentasService
   ) { 
   }
 
@@ -89,6 +92,13 @@ export class ClientesComponent implements OnInit {
 
     return await modal.present();
   }
+
+  async addCliente(){
+    const modal = await this.modalCtrl.create( {
+      component: AddClienteComponent});
+
+    return await modal.present();
+  }
   
   doRefresh(event) {
     this.perfil.getClientes();
@@ -101,5 +111,12 @@ export class ClientesComponent implements OnInit {
     }, 2000);
   }
 
+  deleteCliente(item){
+    this.services.deleteClient(item.id_client).subscribe((resp)=>{
+      if(resp){
+        alert("Eliminado correctamente");
+      }
+    });
+  }
 
 }

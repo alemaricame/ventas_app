@@ -71,9 +71,9 @@ export class LoginService {
              this.storage.set('Data',resp);
              this.dataUser = resp;
              /** Determina el tipo de dato al que pertenece cada elemento de la colección */
-               this.loguear==true;
-               /** Si el inicio de sesión es correcto, abre la pantalla de home */
-            this.navCtrl.navigateRoot('/home');
+             this.loguear==true;
+            /** Si el inicio de sesión es correcto, abre la pantalla de home */
+             this.navCtrl.navigateRoot('/home');
           }
    });   
   }
@@ -83,6 +83,8 @@ export class LoginService {
     let url=  environment.apiURL+'consultas/productos';
     return this.http.post(url,{idUser:this.dataUser.idUser})
         .subscribe( resp =>{
+          this.storage.set('Productos',resp);
+
           this.productos = resp;
 
     });  
@@ -93,7 +95,7 @@ export class LoginService {
     let url= environment.apiURL+'consultas/clientes';
     return this.http.post(url,{usuario:this.dataUser.usuario})
         .subscribe( resp =>{
-          console.log("clientes",resp);
+          this.storage.set('Clientes', resp);
           this.clientes = resp;
 
     });  
@@ -104,9 +106,7 @@ export class LoginService {
     let url= environment.apiURL+'consultas/verventas';
     return this.http.post(url,{idUser:this.dataUser.idUser})
         .subscribe( resp =>{
-          console.log("ventas",resp);
           this.ventas = resp;
-
     }); 
   }
 

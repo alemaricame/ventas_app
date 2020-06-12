@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController, NavController } from '@ionic/angular';
 import { SMS } from '@ionic-native/sms/ngx';
+import { Storage } from '@ionic/storage';
 
 /** Componentes */
 import { LoginService } from '../../services/login.service';
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,10 @@ export class LoginPage implements OnInit {
     public alerCtrl : AlertController,
     public login : LoginService,
     private sms: SMS,
-    public menu: MenuController
+    public menu: MenuController,
+    private storage: Storage,
+    public navCtrl: NavController,
+
   ) { 
     /** Form para obtener usuario y password */
     this.loginForm = formBuilder.group({
@@ -38,6 +41,16 @@ export class LoginPage implements OnInit {
       passRepartidor: ['', Validators.required]
     });
     this.menu.enable(true);
+    storage.get('Data').then((val) => {
+      console.log(val.idUser)
+      if(val.idUser){
+        this.navCtrl.navigateRoot('/home');
+
+      }else{
+        this.navCtrl.navigateRoot('/login');
+
+      }
+    });
   }
 
   ngOnInit() {
